@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Charset & viewport -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/style.css">
+
+    <!-- Site verification -->
+    <meta name="google-site-verification" content="768VG26oxylW15-MZltoCZkIW2dt2U5S4mOQni4I5D4">
+
+    <!-- Title & Description with common misspellings -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <title>Semelion AI - Malawi AI Chatbot | Semlion AI | Semilion AI Assistant</title>
+    <meta name="description" content="Semelion AI (also known as Semlion AI, Semilion AI) - Malawi-made intelligent chatbot for education, coding, research, and creative projects. Free AI assistant created by a student.">
+    
+    <!-- Keywords including common misspellings -->
+    <meta name="keywords" content="semelion ai, semlion ai, semilion ai, emelion ai, semelion, malawi ai, africa ai, free chatbot, ai assistant, coding help, education ai, student ai project, semelion chatbot, semlion chatbot">
+
+    <!-- Favicon declarations -->
+    <link rel="icon" type="image/x-icon" href="https://semelionai.onrender.com/favicon.ico?v=2">
+    <link rel="shortcut icon" href="https://semelionai.onrender.com/favicon.ico?v=2">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://semelionai.onrender.com/static/ico.png?v=2">
+    <link rel="icon" type="image/svg+xml" href="https://semelionai.onrender.com/static/ico.svg?v=2">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://semelionai.onrender.com/static/apple-touch-icon.png?v=2">
+
+    <!-- Open Graph metadata -->
+    <meta property="og:title" content="Semelion AI - Malawi AI Assistant (Semlion AI, Semilion AI)">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://semelionai.onrender.com/">
+    <meta property="og:image" content="https://semelionai.onrender.com/static/ico.png">
+    <meta property="og:description" content="Semelion AI - Also known as Semlion AI or Semilion AI. A Malawi-made intelligent chatbot for coding, education, research, and creative projects.">
+    <meta property="og:site_name" content="Semelion AI">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Semelion AI - Malawi AI Chatbot">
+    <meta name="twitter:description" content="Free AI assistant from Malawi. Also search for Semlion AI or Semilion AI.">
+    <meta name="twitter:image" content="https://semelionai.onrender.com/static/ico.png">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://semelionai.onrender.com/">
+
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Semelion AI",
+        "alternateName": ["Semelion AI chatbot", "Semilion chatbot", "semelion shinsa"],
+        "url": "https://semelionai.onrender.com/",
+        "description": "Semelion AI - A free AI chatbot created in Malawi for education, coding, research, and creative assistance.",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Any",
+        "permissions": "microphone",
+        "creator": {
+            "@type": "Malawian",
+            "name": "Allan Nkhoma",
+            "url": "https://semelionai.onrender.com/owner"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "keywords": "semelion ai, semlion ai, semilion ai, malawi ai, free chatbot, ai assistant, education, coding help, semelion shinsa"
+    }
+    </script>
+
+    <!-- Additional schema for misspellings -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Semelion AI",
+        "alternateName": ["Semlion AI", "Semilion AI", "Emelion AI"],
+        "url": "https://semelionai.onrender.com/",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://semelionai.onrender.com/?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+</head>
+
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Overlay -->
+        <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+        
+        <!-- Reasoning Popup Modal -->
+        <div id="reasoningModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>AI Reasoning Process</h3>
+                    <span class="close" onclick="closeReasoningModal()">&times;</span>
+                </div>
+                <div class="modal-body" id="reasoningContent">
+                    <!-- Reasoning content will be inserted here -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Settings Modal -->
+        <div id="settingsModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Settings</h3>
+                    <span class="close" onclick="closeSettings()">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="settings-section">
+                        <h4>Appearance</h4>
+                        <div class="setting-item">
+                            <label>Theme:</label>
+                            <select id="themeSelect" onchange="changeTheme(this.value)">
+                                <option value="dark">Dark</option>
+                                <option value="light">Light</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <label>Font size:</label>
+                            <select id="fontSize" onchange="saveSettings()">
+                                <option value="small">Small</option>
+                                <option value="medium">Medium</option>
+                                <option value="large">Large</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <label>Compact mode:</label>
+                            <input type="checkbox" id="compactMode" onchange="saveSettings()">
+                        </div>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <h4>Conversation</h4>
+                        <div class="setting-item">
+                            <label>Auto-save conversations:</label>
+                            <input type="checkbox" id="autoSave" checked>
+                        </div>
+                        <div class="setting-item">
+                            <label>Show timestamps:</label>
+                            <input type="checkbox" id="showTimestamps" checked>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <h4>AI Behavior</h4>
+                        <div class="setting-item">
+                            <label>Default reasoning mode:</label>
+                            <input type="checkbox" id="defaultReasoning">
+                        </div>
+                        <div class="setting-item">
+                            <label>Default online search:</label>
+                            <input type="checkbox" id="defaultSearch">
+                        </div>
+                        <div class="setting-item">
+                            <label>Conversation memory limit:</label>
+                            <select id="memoryLimit" onchange="saveSettings()">
+                                <option value="10">10 messages</option>
+                                <option value="20">20 messages</option>
+                                <option value="50">50 messages</option>
+                                <option value="100">100 messages</option>
+                                <option value="unlimited">Unlimited</option>
+                            </select>
+                        </div>
+                        <div class="setting-item" style="align-items: flex-start;">
+                            <label style="padding-top: 6px;">Custom system prompt:</label>
+                            <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
+                                <textarea id="userSystemPrompt" class="system-prompt-input" rows="5" placeholder="Optional: Add instructions that change how the AI behaves. Leave empty to use default behavior."></textarea>
+                                <div style="display:flex; gap:8px; justify-content:flex-end;">
+                                    <button class="action-btn" type="button" onclick="resetSystemPrompt()">Reset</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <h4>Privacy & Notifications</h4>
+                        <div class="setting-item">
+                            <label>Sound notifications:</label>
+                            <input type="checkbox" id="soundNotifications" onchange="saveSettings()">
+                        </div>
+                        <div class="setting-item">
+                            <label>Desktop notifications:</label>
+                            <input type="checkbox" id="desktopNotifications" onchange="saveSettings()">
+                        </div>
+                        <div class="setting-item">
+                            <label>Export timestamps:</label>
+                            <input type="checkbox" id="exportTimestamps" onchange="saveSettings()" checked>
+                        </div>
+                        <div class="setting-item">
+                            <label>Export reasoning:</label>
+                            <input type="checkbox" id="exportReasoning" onchange="saveSettings()" checked>
+                        </div>
+                        <div class="setting-item">
+                            <label>Export conversations:</label>
+                            <div style="display: flex; gap: 8px;">
+                                <button class="action-btn" onclick="exportConversations('json')" style="background: var(--accent); color: white; flex: 1;">
+                                    <i class="fas fa-download"></i> JSON
+                                </button>
+                                <button class="action-btn" onclick="exportConversations('txt')" style="background: var(--accent); color: white; flex: 1;">
+                                    <i class="fas fa-download"></i> TXT
+                                </button>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <label>Import conversations:</label>
+                            <button class="action-btn" onclick="importConversations()" style="background: var(--success); color: white;">
+                                <i class="fas fa-upload"></i> Import Data
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <h4>Data Management</h4>
+                        <div class="setting-item">
+                            <button class="action-btn" onclick="clearAllData()" style="background: var(--error); color: white;">
+                                <i class="fas fa-trash"></i> Clear All Data
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Set Name Modal -->
+        <div id="setNameModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Set Your Name</h3>
+                    <span class="close" onclick="closeSetNameModal()">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="settings-section">
+                        <p style="margin-bottom: 15px;">Please enter your name to personalize your experience.</p>
+                        <div class="setting-item">
+                            <input type="text" id="userNameInput" placeholder="Enter your name" class="search-input" style="width: 100%;">
+                        </div>
+                        <div class="setting-item" style="justify-content: flex-end; margin-top: 15px;">
+                            <button class="action-btn" onclick="saveUserName()" style="background: var(--accent); color: white;">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <span>Semelion AI</span>
+                </div>
+                <button class="sidebar-close-btn" onclick="closeSidebar()" title="Close sidebar">
+                    <i class="fas fa-times"></i>
+                </button>
+                <button class="new-chat-btn" onclick="startNewConversation()">
+                    <i class="fas fa-plus"></i>
+                    New Chat
+                </button>
+            </div>
+            
+            <div class="conversations-section">
+                <div class="search-conversations">
+                    <input type="text" id="searchConversations" placeholder="Search conversations..." class="search-input">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+                
+                <!-- <div class="category-filter">
+                    <select id="categoryFilter" class="category-select">
+                        <option value="all">All Categories</option>
+                        <option value="general">General</option>
+                        <option value="work">Work</option>
+                        <option value="education">Education</option>
+                        <option value="creative">Creative</option>
+                        <option value="research">Research</option>
+                        <option value="personal">Personal</option>
+                    </select>
+                </div> -->
+                
+                <div class="section-title">Recent Conversations</div>
+                <div id="conversationsList"></div>
+            </div>
+            
+            <div class="sidebar-footer">
+                <!-- <button class="export-conv-btn" onclick="exportConversations()">
+                    <i class="fas fa-download"></i>
+                    Export Conversations
+                </button> -->
+                <button class="reload-kb-btn" onclick="reloadKnowledgeBase()">
+                    <i class="fas fa-sync-alt"></i>
+                    Reload Knowledge Base
+                </button>
+                <a href="/owner"><button class="about">Owner Of AI</button></a>
+                <!-- <button class="reload-kb-btn" onclick="importConversations()">
+                    <i class="fas fa-upload"></i> Import Data
+                </button> -->
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="chat-header">
+                <button class="mobile-menu-btn" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="chat-title">Semelion AI</div>
+                <div class="header-actions">
+                    <span id="onlineStatus" class="online-status online">Online</span>
+                    <select class="model-selector" id="modelSelector" title="Select AI Model">
+                        <option value="SA Pro">Storm 5.O</option>
+                    </select>
+                    <!-- <select class="model-selector" id="modelSelector" title="Select AI Model">
+                        <option value="SA Pro">SA Pro</option>
+                        <option value="SA Agent">SA Agent</option>
+                        <option value="SA-1.0">SA 1.O</option>
+                        <option value="SA Assistant">SA Assistant</option>
+                    </select> -->
+                    <button class="settings-btn" id="settingsBtn" onclick="openSettings()" title="Settings">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                    <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <span id="userDisplay" style="margin-right:8px; color: var(--text-secondary);"></span>
+                    <button class="action-btn" id="setNameBtn" title="Set your name">Set name</button>
+                </div>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages">
+                <div class="welcome-message">
+                    <h1 class="welcome-title">Welcome to Semelion AI</h1>
+                    <p class="welcome-subtitle">Your versatile AI assistant created in Malawi, ready to help with any topic or task.</p>
+                    
+                    <div class="welcome-features">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="feature-title">Education & Research</div>
+                            <div class="feature-description">Get help with academic topics, research questions, and learning new concepts.</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div class="feature-title">Creative Projects</div>
+                            <div class="feature-description">Brainstorm ideas, write content, and explore creative solutions to your projects.</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <div class="feature-title">Problem Solving</div>
+                            <div class="feature-description">Analyze complex problems and find practical solutions across various domains.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-input-container">
+                <div class="chat-input-wrapper">
+                    <div id="thinkingDots" style="display:none; text-align:center; padding:8px 0; color:var(--text-secondary); font-size:14px;"></div>
+                    
+                    <!-- reason and others -->
+
+                    
+
+
+                    <div style="padding-bottom: 3px; align-items:center; justify-content:space-between; gap:12px; margin-top:8px;">
+                        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                            <!-- <button class="action-btn" id="reasonToggle" type="button" title="Deep thinking (Reason)">Reason</button>
+                            <button class="action-btn" id="searchToggle" type="button" title="Online search">Online Search</button> -->
+                            
+                        </div>
+                        <div style="min-width:180px; text-align:right;">
+                            <span id="rateLimitMsg" style="display:none; color: var(--warning);">Try again in <span id="retryCountdown">60</span>s</span>
+                        </div>
+                    </div>
+
+                    <!-- input -->
+                    <center>
+                        <button class="action-btn" id="rememberBtn" type="button" title="Save current text as favorite">Remember</button>
+                        <form class="chat-form" id="chatForm">
+                        <textarea 
+                            class="message-input" 
+                            id="messageInput" 
+                            placeholder="Ask me anything..."
+                            rows="1"
+                        ></textarea>
+                        <button class="send-button" type="submit" id="sendButton">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form></center>
+
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="static/script.js"></script>
+<!-- Hidden text for SEO misspellings - visible to search engines but not users -->
+<div style="position: absolute; left: -9999px; top: -9999px; display: none;">
+    <p>Common searches: Semlion AI, Semilion AI, Emelion AI, Semelion AI chatbot, Malawi AI assistant, free AI tool, student AI project, African AI development, coding assistant, education AI, research AI helper, creative writing AI.</p>
+    <p>If you're looking for Semelion AI but spelled it as Semlion AI or Semilion AI, you've found the right place! This is the official Semelion AI website.</p>
+</div>
+</body>
+</html>
