@@ -17,7 +17,7 @@ load_dotenv()
 app = Flask(__name__)
 
 # API Server Configuration
-API_SERVER_URL = os.getenv("API_SERVER_URL", "http://localhost:8080")
+API_SERVER_URL = os.getenv("API_SERVER_URL", "https://semelion-ai-api.onrender.com")
 API_KEY = os.getenv("SEMELION_API_KEY", "sa-150094635296999121")
 
 # User data storage (in-memory)
